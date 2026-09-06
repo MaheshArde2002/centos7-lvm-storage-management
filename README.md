@@ -151,7 +151,7 @@ The structure is now:
 A 5 GiB Logical Volume named `lv_data` was created inside `vg_data`.
 
 ```bash
-lvcreate -L 5G -n lv_data vg_data
+lvcreate -L +400M  -n lv_data vg_data
 ```
 
 Verify the Logical Volume:
@@ -184,7 +184,7 @@ The complete LVM structure is now:
 
 ## Step 7: Creating the XFS Filesystem
 
-An XFS filesystem was created on the Logical Volume.
+An  ext4  filesystem was created on the Logical Volume.
 
 ```bash
 mkfs.xfs /dev/vg_data/lv_data
@@ -215,7 +215,7 @@ mkdir /root/Projects
 The Logical Volume was mounted:
 
 ```bash
-mount    /dev/vg_data/lv_data    /root/Projects```
+mount    /dev/vg_data/lv_project    /root/Projects```
 
 Verify the mount:
 
@@ -238,7 +238,7 @@ To make the filesystem mount automatically after a reboot, an entry was added to
 First, the UUID was obtained:
 
 ```bash
-blkid /dev/vg_data/lv_data
+blkid /dev/vg_data/lv_project
 ```
 
 Then `/etc/fstab` was edited:
@@ -309,7 +309,7 @@ This confirms that the Logical Volume is available for normal file operations.
                     CentOS 7
                        │
                   /dev/sdb
-                  10 GiB Disk
+                  2 GiB Disk
                        │
                        ▼
                   /dev/sdb1
